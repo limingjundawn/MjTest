@@ -18,15 +18,26 @@ Route::get('/', function () {
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
     $api->group(['namespace'=>'App\Http\Api\V1\Controllers'],function($api){
-
+        //注册
         $api->post('register','UserController@register');
+        //登录
         $api->post('login','UserController@login');
 
         $api->group(['middleware'=>'jwt.auth'],function($api){
             $api->post('test','UserController@test');
+
+            //退出登录
             $api->post('logout','UserController@logout');
         });
 
+
+        //注册
+        $api->post('admin_register','AdminController@register');
+        //登录
+        $api->post('admin_login','AdminController@login');
+
+
+        //刷新token
         $api->get('refresh', [
             'middleware' => 'jwt.refresh',
             function() {
@@ -35,6 +46,7 @@ $api->version('v1', function ($api) {
                 ]);
             }
         ]);
+
 
     });
 
