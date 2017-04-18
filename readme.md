@@ -6,8 +6,9 @@
 2. cd MJTest
 3.cp .env.example .env
 4.vim .env
-5.php artisan key:generate
-6.php artisan serve
+5.php artisan migrate
+6.php artisan key:generate
+7.php artisan serve
 
 ##detail
 This is a api example.The project use dingo/jwt packages to show how to create a api.
